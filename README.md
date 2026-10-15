@@ -9,10 +9,21 @@ brew install matheuscoelhomalta/tap/garmcli
 garmcli --json doctor
 ```
 
-The formula installs Python 3.14 and [gccli](https://github.com/bpauli/gccli) as dependencies. Authentication is managed by gccli:
+The 2.0.0 formula installs Python 3.14 and the required Python libraries, including
+`garminconnect==0.3.18`. No separate gccli installation is required:
 
 ```bash
-gccli auth login your-email@example.com
+garmcli auth login your-email@example.com
+```
+
+Sessions use macOS Keychain or Linux Secret Service. Linux live access requires
+an available, unlocked Secret Service; offline history queries need no session.
+Upgrades from 1.0.0 preserve SQLite history and account identities. Authenticate
+with garmcli after upgrading; the old `--gccli` option is removed.
+
+```bash
+brew update
+brew upgrade matheuscoelhomalta/tap/garmcli
 ```
 
 The companion agent skill is installed under `$(brew --prefix garmcli)/share/garmcli/skills/garmcli`. From a persistent Homebrew installation, link it into Codex's skill directory if no existing skill installation is present:
