@@ -19,7 +19,7 @@ class Garmcli < Formula
     venv = virtualenv_create(libexec, "python3.14")
     venv.pip_install resource("setuptools"), build_isolation: false
     venv.pip_install_and_link buildpath, build_isolation: false
-    (share/"garmcli/skills").install "skills/garmcli"
+    (pkgshare/"skills").install "skills/garmcli"
   end
 
   def caveats
@@ -42,6 +42,6 @@ class Garmcli < Formula
     assert_equal "1", result.fetch("schema_version")
     assert_equal false, result.fetch("complete")
     assert_equal "missing", result.fetch("data").fetch("records").first.fetch("status")
-    assert_path_exists share/"garmcli/skills/garmcli/SKILL.md"
+    assert_path_exists pkgshare/"skills/garmcli/SKILL.md"
   end
 end
