@@ -36,7 +36,7 @@ class Garmcli < Formula
   test do
     assert_match "Read-only Garmin history", shell_output("#{bin}/garmcli --help")
     command = "#{bin}/garmcli --json --db #{testpath}/history.sqlite3 " \
-              "--gccli #{testpath}/missing-gccli --account-id #{'a' * 64} " \
+              "--gccli #{testpath}/missing-gccli --account-id #{"a" * 64} " \
               "health sleep --from 2026-01-01 --to 2026-01-01 --offline"
     result = JSON.parse(shell_output(command, 1))
     assert_equal "1", result.fetch("schema_version")
